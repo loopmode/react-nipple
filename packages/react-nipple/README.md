@@ -1,6 +1,6 @@
 # react-nipple
 
-A react wrapper for [nipplejs](https://www.npmjs.com/package/nipplejs)
+A react wrapper for the [nipplejs](https://www.npmjs.com/package/nipplejs) on-screen-joystick.
 
 <img src="https://raw.githubusercontent.com/loopmode/react-nipple/master/packages/react-nipple/preview.gif" />
 
