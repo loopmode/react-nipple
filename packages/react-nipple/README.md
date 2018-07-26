@@ -6,7 +6,15 @@ A react wrapper for [nipplejs](https://www.npmjs.com/package/nipplejs)
 
 ```bash
 yarn add react-nipple
+# or using npm:
+npm install --save react-nipple
 ```
+
+### Resources
+
+-   Full documentation: [https://loopmode.github.io/react-nipple/](https://loopmode.github.io/react-nipple/)
+-   Github repository: [https://github.com/loopmode/react-nipple](https://github.com/loopmode/react-nipple)
+-   NPM package: [https://www.npmjs.com/package/react-nipple](https://www.npmjs.com/package/react-nipple)
 
 ## Usage
 
