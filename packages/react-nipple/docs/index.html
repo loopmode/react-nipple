@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">my-package API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ReactNipple.js~ReactNipple.html">ReactNipple</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="react-nipple">react-nipple</h1>
+<p>A react wrapper for <a href="https://www.npmjs.com/package/nipplejs">nipplejs</a></p>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-bash"><code class="source-code prettyprint">yarn add react-nipple</code>
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Import and use the component. It supports all <code>options</code> from <code>nipplejs</code>.<br>It provides callbacks for all supported event types in a camel-cased <code>on</code>-notation, e.g. <code>start</code> -&gt; <code>onStart</code>.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">import React from &apos;react&apos;;
+import ReactNipple from &apos;react-nipple&apos;;
+
+// optional: include the stylesheet somewhere in your app
+import &apos;react-nipple/lib/styles.css&apos;;
+
+class Example extends React.Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;ReactNipple
+                    // supports all nipplejs options
+                    // see https://github.com/yoannmoinet/nipplejs#options
+                    options={{ mode: &apos;static&apos;, position: { top: &apos;50%&apos;, left: &apos;50%&apos; } }}
+                    // any unknown props will be passed to the container element, e.g. &apos;title&apos;, &apos;style&apos; etc
+                    style={{
+                        outline: `1px dashed red`,
+                        width: 150,
+                        height: 150
+                        // if you pass position: &apos;relative&apos;, you don&apos;t need to import the stylesheet
+                    }}
+                    // all events supported by nipplejs are available as callbacks
+                    // see https://github.com/yoannmoinet/nipplejs#start
+                    onMove={(evt, data) =&gt; console.log(evt, data)}
+                /&gt;
+            &lt;/div&gt;
+        );
+    }
+}</code>
+</code></pre>
+<h3 id="additional-features">Additional features</h3>
+<ul>
+<li>There is an additional <code>onCreated</code> callback that receives the created <code>nipplejs</code> instance - you might want to use it for direct access to instance methods etc.</li>
+<li>You can pass the boolean <code>static</code> flag as a prop, which is a shortcut for <code>options={{mode: &apos;static&apos;, position: {top: &apos;50%&apos;, let: &apos;50%&apos;}}}</code></li>
+</ul>
+<h2 id="demo-app">Demo app</h2>
+<p>The repository is a yarn workspace that contains a small demo app next to the actual <code>react-nipples</code> package.<br>You can play around with the demo after cloning the repository and installing the dependencies in the root folder.</p>
+<pre><code><code class="source-code prettyprint">git clone https://github.com/loopmode/react-nipple.git
+cd react-nipple
+yarn install
+yarn demo</code>
+</code></pre><h2 id="debug-view">Debug view</h2>
+<p>There is a debug view based on the official <a href="https://codepen.io/YoannM/pen/gapmMG">codepen demo</a>.</p>
+<p>It supports a <code>data</code> prop that accepts the <code>data</code> object you receive with all <code>nipplejs</code> events, and simply renders its values.<br>Use it to quickly inspect the values.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">import React from &apos;react&apos;;
+import ReactNipple from &apos;react-nipple&apos;;
+import DebugView from &apos;react-nipple/lib/DebugView&apos;;
+
+class ReactNippleExample extends React.Component {
+    state = {
+        data: {}
+    };
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;ReactNipple
+                    options={{mode: &apos;static&apos;, position: {top: &apos;50%&apos;, left: &apos;50%&apos;}}}
+                    style={{
+                        outline: `1px dashed red`,
+                        width: 150,
+                        height: 150
+                        position: `relative`
+                    }}
+
+                    onStart={this.handleEvent}
+                    onEnd={this.handleEvent}
+                    onMove={this.handleEvent}
+                    onDir={this.handleEvent}
+                    onPlain={this.handleEvent}
+                    onShown={this.handleEvent}
+                    onHidden={this.handleEvent}
+                    onPressure={this.handleEvent}
+                /&gt;
+                &lt;DebugView data={this.state.data} /&gt;
+            &lt;/div&gt;
+        );
+    }
+    handleEvent = (evt, data) =&gt; {
+        console.log(evt);
+        this.setState({ data });
+    }
+}</code>
+</code></pre>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

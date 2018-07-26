@@ -1,0 +1,3 @@
+{
+    "extends": "@loopmode/babel6-base/.babelrc"
+}

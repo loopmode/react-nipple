@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/ReactNipple.js | my-package API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ReactNipple.js~ReactNipple.html">ReactNipple</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/ReactNipple.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import nipplejs from &apos;nipplejs&apos;;
+import autobind from &apos;autobind-decorator&apos;;
+import isEqual from &apos;lodash.isequal&apos;;
+import PropTypes from &apos;prop-types&apos;;
+import React, { Component } from &apos;react&apos;;
+
+import cx from &apos;classnames&apos;;
+
+/**
+ * A react wrapper component for `nipplejs`.
+ * @see https://www.npmjs.com/package/nipplejs
+ * @author Jovica Aleksic &lt;jovica.aleksic@loopmode.de&gt;
+ */
+export default class ReactNipple extends Component {
+    /* eslint-disable no-trailing-spaces */
+    /**
+     * Component propTypes
+     *
+     * Any additional (unknown) props will be passed along as attributes of the created DOM element.
+     *
+     * @property {string} className - A css classname for the DOM element
+     * @property {object} options - An object with nipplejs options, see https://github.com/yoannmoinet/nipplejs#options
+     * @property {boolean} static - A shortcut for setting the options `{mode: &apos;static&apos;, position: {top: &apos;50%&apos;, left: &apos;50%&apos;}}`. Will override values in the `options` object.
+     * @property {function} onCreated - Callback that is invoked with the created instance
+     * @property {function} onDestroy - Callback that is invoked with the instance that is going to be destroyed
+     * @property {function} onStart - Callback for the &apos;start&apos; event handler, see https://github.com/yoannmoinet/nipplejs#start
+     * @property {function} onEnd - Callback for the &apos;end&apos; event handler, see https://github.com/yoannmoinet/nipplejs#end
+     * @property {function} onMove - Callback for the &apos;move&apos; event handler, see https://github.com/yoannmoinet/nipplejs#move
+     * @property {function} onDir - Callback for the &apos;dir&apos; event handler, see https://github.com/yoannmoinet/nipplejs#dir
+     * @property {function} onPlain - Callback for the &apos;plain&apos; event handler, see https://github.com/yoannmoinet/nipplejs#plain
+     * @property {function} onShown - Callback for the &apos;shown&apos; event handler, see https://github.com/yoannmoinet/nipplejs#shown
+     * @property {function} onHidden - Callback for the &apos;hidden&apos; event handler, see https://github.com/yoannmoinet/nipplejs#hidden
+     * @property {function} onPressure - Callback for the &apos;pressure&apos; event handler, see https://github.com/yoannmoinet/nipplejs#pressure
+     */
+    /* eslint-enable no-trailing-spaces */
+    static get propTypes() {
+        return {
+            className: PropTypes.string,
+            options: PropTypes.shape({
+                color: PropTypes.string,
+                size: PropTypes.integer,
+                threshold: PropTypes.float, // before triggering a directional event
+                fadeTime: PropTypes.integer, // transition time
+                multitouch: PropTypes.bool,
+                maxNumberOfNipples: PropTypes.number, // when multitouch, what is too many?
+                dataOnly: PropTypes.bool, // no dom element whatsoever
+                position: PropTypes.object, // preset position for &apos;static&apos; mode
+                mode: PropTypes.string, // &apos;dynamic&apos;, &apos;static&apos; or &apos;semi&apos;
+                restJoystick: PropTypes.bool,
+                restOpacity: PropTypes.number, // opacity when not &apos;dynamic&apos; and rested
+                catchDistance: PropTypes.number
+            }),
+            static: PropTypes.bool,
+            onStart: PropTypes.func,
+            onEnd: PropTypes.func,
+            onMove: PropTypes.func,
+            onDir: PropTypes.func,
+            onPlain: PropTypes.func,
+            onShown: PropTypes.func,
+            onHidden: PropTypes.func,
+            onPressure: PropTypes.func,
+            onCreated: PropTypes.func,
+            onDestroy: PropTypes.func
+        };
+    }
+
+    get ownProps() {
+        return [
+            &apos;options&apos;,
+            &apos;static&apos;,
+            &apos;onStart&apos;,
+            &apos;onEnd&apos;,
+            &apos;onMove&apos;,
+            &apos;onDir&apos;,
+            &apos;onPlain&apos;,
+            &apos;onShown&apos;,
+            &apos;onHidden&apos;,
+            &apos;onPressure&apos;,
+            &apos;onCreated&apos;
+        ];
+    }
+    get elementProps() {
+        return Object.entries(this.props).reduce((result, [key, value]) =&gt; {
+            if (this.ownProps.includes(key)) {
+                return result;
+            }
+            result[key] = value;
+            return result;
+        }, {});
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!isEqual(prevProps.options, this.props.options)) {
+            this.destroyJoystick();
+            this.createJoystick();
+        }
+    }
+
+    render() {
+        return (
+            &lt;div {...this.elementProps} ref={this.handleElement} className={cx(&apos;ReactNipple&apos;, this.props.className)} /&gt;
+        );
+    }
+
+    //-----------------------------------
+    //
+    // impl
+    //
+    //-----------------------------------
+
+    @autobind
+    handleElement(ref) {
+        this._element = ref;
+        if (ref) {
+            this.createJoystick(this.props);
+        } else if (this._element) {
+            this.destroyJoystick();
+        }
+    }
+    createJoystick(props) {
+        const options = {
+            zone: this._element,
+            ...props.options
+        };
+
+        if (this.props.static) {
+            options.mode = &apos;static&apos;;
+            options.position = {
+                top: &apos;50%&apos;,
+                left: &apos;50%&apos;
+            };
+        }
+
+        const joystick = nipplejs.create(options);
+        joystick.on(&apos;start&apos;, this.handleJoystickStart);
+        joystick.on(&apos;end&apos;, this.handleJoystickEnd);
+        joystick.on(&apos;move&apos;, this.handleJoystickMove);
+        joystick.on(&apos;dir&apos;, this.handleJoystickDir);
+        joystick.on(&apos;plain&apos;, this.handleJoystickPlain);
+        joystick.on(&apos;shown&apos;, this.handleJoystickShown);
+        joystick.on(&apos;hidden&apos;, this.handleJoystickHidden);
+        joystick.on(&apos;pressure&apos;, this.handleJoystickPressure);
+
+        this.joystick = joystick;
+
+        if (props.onCreated) {
+            props.onCreated(this.joystick);
+        }
+    }
+    destroyJoystick() {
+        if (this.joystick) {
+            this.joystick.destroy();
+            this.joystick = undefined;
+        }
+    }
+    invokeCallback(type, evt, data) {
+        if (this.props[type]) {
+            this.props[type](evt, data);
+        }
+    }
+    @autobind
+    handleJoystickStart(evt, data) {
+        this.invokeCallback(&apos;onStart&apos;, evt, data);
+    }
+    @autobind
+    handleJoystickEnd(evt, data) {
+        this.invokeCallback(&apos;onEnd&apos;, evt, data);
+    }
+    @autobind
+    handleJoystickMove(evt, data) {
+        this.invokeCallback(&apos;onMove&apos;, evt, data);
+    }
+    @autobind
+    handleJoystickDir(evt, data) {
+        this.invokeCallback(&apos;onDir&apos;, evt, data);
+    }
+    @autobind
+    handleJoystickPlain(evt, data) {
+        this.invokeCallback(&apos;onPlain&apos;, evt, data);
+    }
+    @autobind
+    handleJoystickShown(evt, data) {
+        this.invokeCallback(&apos;onShown&apos;, evt, data);
+    }
+    @autobind
+    handleJoystickHidden(evt, data) {
+        this.invokeCallback(&apos;onHidden&apos;, evt, data);
+    }
+    @autobind
+    handleJoystickPressure(evt, data) {
+        this.invokeCallback(&apos;onPressure&apos;, evt, data);
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "react-nipple-workpace",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "demo": "cd packages/demo && yarn start",
+    "nuke": "find . -name node_modules -type d -exec rm -rf '{}' + && yarn"
+  }
+}

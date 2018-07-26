@@ -1,0 +1,1564 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "name": "src/DebugView.js",
+    "content": "import React, { Component } from 'react';\r\nimport PropTypes from 'prop-types';\r\n\r\nexport default class DebugView extends Component {\r\n    static propTypes = {\r\n        data: PropTypes.shape({\r\n            position: PropTypes.shape({\r\n                x: PropTypes.number,\r\n                y: PropTypes.number\r\n            }),\r\n            angle: PropTypes.shape({\r\n                radian: PropTypes.number,\r\n                degree: PropTypes.number\r\n            }),\r\n            direction: PropTypes.shape({\r\n                x: PropTypes.number,\r\n                y: PropTypes.number,\r\n                angle: PropTypes.number\r\n            }),\r\n            force: PropTypes.number,\r\n            pressure: PropTypes.number,\r\n            distance: PropTypes.number\r\n        })\r\n    };\r\n    render() {\r\n        const { position = {}, force, pressure, distance, angle = {}, direction = {} } = this.props.data || {};\r\n\r\n        return (\r\n            <div className=\"debug\">\r\n                <ul>\r\n                    <li className=\"position\">\r\n                        position :\r\n                        <ul>\r\n                            <li className=\"x\">\r\n                                x :\r\n                                <span className=\"data\" children={position.x} />\r\n                            </li>\r\n                            <li className=\"y\">\r\n                                y :\r\n                                <span className=\"data\" children={position.y} />\r\n                            </li>\r\n                        </ul>\r\n                    </li>\r\n                    <li className=\"force\">\r\n                        force : <span className=\"data\" children={force} />\r\n                    </li>\r\n                    <li className=\"pressure\">\r\n                        pressure : <span className=\"data\" children={pressure} />\r\n                    </li>\r\n                    <li className=\"distance\">\r\n                        distance : <span className=\"data\" children={distance} />\r\n                    </li>\r\n                    <li className=\"angle\">\r\n                        angle :\r\n                        <ul>\r\n                            <li className=\"radian\">\r\n                                radian :\r\n                                <span className=\"data\" children={angle.radian} />\r\n                            </li>\r\n                            <li className=\"degree\">\r\n                                degree :\r\n                                <span className=\"data\" children={angle.degree} />\r\n                            </li>\r\n                        </ul>\r\n                    </li>\r\n                    <li className=\"direction\">\r\n                        direction :\r\n                        <ul>\r\n                            <li className=\"x\">\r\n                                x :\r\n                                <span className=\"data\" children={direction.x} />\r\n                            </li>\r\n                            <li className=\"y\">\r\n                                y :\r\n                                <span className=\"data\" children={direction.y} />\r\n                            </li>\r\n                            <li className=\"angle\">\r\n                                angle :\r\n                                <span className=\"data\" children={direction.angle} />\r\n                            </li>\r\n                        </ul>\r\n                    </li>\r\n                </ul>\r\n                <div className=\"dump\" />\r\n            </div>\r\n        );\r\n    }\r\n}\r\n",
+    "static": true,
+    "longname": "src/DebugView.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "class",
+    "name": "DebugView",
+    "memberof": "src/DebugView.js",
+    "static": true,
+    "longname": "src/DebugView.js~DebugView",
+    "access": null,
+    "export": true,
+    "importPath": "react-nipple/src/DebugView.js",
+    "importStyle": "DebugView",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "react~Component"
+    ]
+  },
+  {
+    "__docId__": 2,
+    "kind": "member",
+    "name": "propTypes",
+    "memberof": "src/DebugView.js~DebugView",
+    "static": true,
+    "longname": "src/DebugView.js~DebugView.propTypes",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"data\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 3,
+    "kind": "method",
+    "name": "render",
+    "memberof": "src/DebugView.js~DebugView",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/DebugView.js~DebugView#render",
+    "access": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "export default from './ReactNipple';\r\n",
+    "static": true,
+    "longname": "src/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 5,
+    "kind": "file",
+    "name": "src/ReactNipple.js",
+    "content": "import nipplejs from 'nipplejs';\r\nimport autobind from 'autobind-decorator';\r\nimport isEqual from 'lodash.isequal';\r\nimport PropTypes from 'prop-types';\r\nimport React, { Component } from 'react';\r\n\r\nimport cx from 'classnames';\r\n\r\n/**\r\n * A react wrapper component for `nipplejs`.\r\n * @see https://www.npmjs.com/package/nipplejs\r\n * @author Jovica Aleksic <jovica.aleksic@loopmode.de>\r\n */\r\nexport default class ReactNipple extends Component {\r\n    /* eslint-disable no-trailing-spaces */\r\n    /**\r\n     * Component propTypes\r\n     *\r\n     * Any additional (unknown) props will be passed along as attributes of the created DOM element.\r\n     *\r\n     * @property {string} className - A css classname for the DOM element\r\n     * @property {object} options - An object with nipplejs options, see https://github.com/yoannmoinet/nipplejs#options\r\n     * @property {boolean} static - A shortcut for setting the options `{mode: 'static', position: {top: '50%', left: '50%'}}`. Will override values in the `options` object.\r\n     * @property {function} onCreated - Callback that is invoked with the created instance\r\n     * @property {function} onDestroy - Callback that is invoked with the instance that is going to be destroyed\r\n     * @property {function} onStart - Callback for the 'start' event handler, see https://github.com/yoannmoinet/nipplejs#start\r\n     * @property {function} onEnd - Callback for the 'end' event handler, see https://github.com/yoannmoinet/nipplejs#end\r\n     * @property {function} onMove - Callback for the 'move' event handler, see https://github.com/yoannmoinet/nipplejs#move\r\n     * @property {function} onDir - Callback for the 'dir' event handler, see https://github.com/yoannmoinet/nipplejs#dir\r\n     * @property {function} onPlain - Callback for the 'plain' event handler, see https://github.com/yoannmoinet/nipplejs#plain\r\n     * @property {function} onShown - Callback for the 'shown' event handler, see https://github.com/yoannmoinet/nipplejs#shown\r\n     * @property {function} onHidden - Callback for the 'hidden' event handler, see https://github.com/yoannmoinet/nipplejs#hidden\r\n     * @property {function} onPressure - Callback for the 'pressure' event handler, see https://github.com/yoannmoinet/nipplejs#pressure\r\n     */\r\n    /* eslint-enable no-trailing-spaces */\r\n    static get propTypes() {\r\n        return {\r\n            className: PropTypes.string,\r\n            options: PropTypes.shape({\r\n                color: PropTypes.string,\r\n                size: PropTypes.integer,\r\n                threshold: PropTypes.float, // before triggering a directional event\r\n                fadeTime: PropTypes.integer, // transition time\r\n                multitouch: PropTypes.bool,\r\n                maxNumberOfNipples: PropTypes.number, // when multitouch, what is too many?\r\n                dataOnly: PropTypes.bool, // no dom element whatsoever\r\n                position: PropTypes.object, // preset position for 'static' mode\r\n                mode: PropTypes.string, // 'dynamic', 'static' or 'semi'\r\n                restJoystick: PropTypes.bool,\r\n                restOpacity: PropTypes.number, // opacity when not 'dynamic' and rested\r\n                catchDistance: PropTypes.number\r\n            }),\r\n            static: PropTypes.bool,\r\n            onStart: PropTypes.func,\r\n            onEnd: PropTypes.func,\r\n            onMove: PropTypes.func,\r\n            onDir: PropTypes.func,\r\n            onPlain: PropTypes.func,\r\n            onShown: PropTypes.func,\r\n            onHidden: PropTypes.func,\r\n            onPressure: PropTypes.func,\r\n            onCreated: PropTypes.func,\r\n            onDestroy: PropTypes.func\r\n        };\r\n    }\r\n\r\n    get ownProps() {\r\n        return [\r\n            'options',\r\n            'static',\r\n            'onStart',\r\n            'onEnd',\r\n            'onMove',\r\n            'onDir',\r\n            'onPlain',\r\n            'onShown',\r\n            'onHidden',\r\n            'onPressure',\r\n            'onCreated'\r\n        ];\r\n    }\r\n    get elementProps() {\r\n        return Object.entries(this.props).reduce((result, [key, value]) => {\r\n            if (this.ownProps.includes(key)) {\r\n                return result;\r\n            }\r\n            result[key] = value;\r\n            return result;\r\n        }, {});\r\n    }\r\n\r\n    componentDidUpdate(prevProps) {\r\n        if (!isEqual(prevProps.options, this.props.options)) {\r\n            this.destroyJoystick();\r\n            this.createJoystick();\r\n        }\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <div {...this.elementProps} ref={this.handleElement} className={cx('ReactNipple', this.props.className)} />\r\n        );\r\n    }\r\n\r\n    //-----------------------------------\r\n    //\r\n    // impl\r\n    //\r\n    //-----------------------------------\r\n\r\n    @autobind\r\n    handleElement(ref) {\r\n        this._element = ref;\r\n        if (ref) {\r\n            this.createJoystick(this.props);\r\n        } else if (this._element) {\r\n            this.destroyJoystick();\r\n        }\r\n    }\r\n    createJoystick(props) {\r\n        const options = {\r\n            zone: this._element,\r\n            ...props.options\r\n        };\r\n\r\n        if (this.props.static) {\r\n            options.mode = 'static';\r\n            options.position = {\r\n                top: '50%',\r\n                left: '50%'\r\n            };\r\n        }\r\n\r\n        const joystick = nipplejs.create(options);\r\n        joystick.on('start', this.handleJoystickStart);\r\n        joystick.on('end', this.handleJoystickEnd);\r\n        joystick.on('move', this.handleJoystickMove);\r\n        joystick.on('dir', this.handleJoystickDir);\r\n        joystick.on('plain', this.handleJoystickPlain);\r\n        joystick.on('shown', this.handleJoystickShown);\r\n        joystick.on('hidden', this.handleJoystickHidden);\r\n        joystick.on('pressure', this.handleJoystickPressure);\r\n\r\n        this.joystick = joystick;\r\n\r\n        if (props.onCreated) {\r\n            props.onCreated(this.joystick);\r\n        }\r\n    }\r\n    destroyJoystick() {\r\n        if (this.joystick) {\r\n            this.joystick.destroy();\r\n            this.joystick = undefined;\r\n        }\r\n    }\r\n    invokeCallback(type, evt, data) {\r\n        if (this.props[type]) {\r\n            this.props[type](evt, data);\r\n        }\r\n    }\r\n    @autobind\r\n    handleJoystickStart(evt, data) {\r\n        this.invokeCallback('onStart', evt, data);\r\n    }\r\n    @autobind\r\n    handleJoystickEnd(evt, data) {\r\n        this.invokeCallback('onEnd', evt, data);\r\n    }\r\n    @autobind\r\n    handleJoystickMove(evt, data) {\r\n        this.invokeCallback('onMove', evt, data);\r\n    }\r\n    @autobind\r\n    handleJoystickDir(evt, data) {\r\n        this.invokeCallback('onDir', evt, data);\r\n    }\r\n    @autobind\r\n    handleJoystickPlain(evt, data) {\r\n        this.invokeCallback('onPlain', evt, data);\r\n    }\r\n    @autobind\r\n    handleJoystickShown(evt, data) {\r\n        this.invokeCallback('onShown', evt, data);\r\n    }\r\n    @autobind\r\n    handleJoystickHidden(evt, data) {\r\n        this.invokeCallback('onHidden', evt, data);\r\n    }\r\n    @autobind\r\n    handleJoystickPressure(evt, data) {\r\n        this.invokeCallback('onPressure', evt, data);\r\n    }\r\n}\r\n",
+    "static": true,
+    "longname": "src/ReactNipple.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 6,
+    "kind": "class",
+    "name": "ReactNipple",
+    "memberof": "src/ReactNipple.js",
+    "static": true,
+    "longname": "src/ReactNipple.js~ReactNipple",
+    "access": null,
+    "export": true,
+    "importPath": "react-nipple/src/ReactNipple.js",
+    "importStyle": "ReactNipple",
+    "description": "A react wrapper component for `nipplejs`.",
+    "see": [
+      "https://www.npmjs.com/package/nipplejs"
+    ],
+    "lineNumber": 14,
+    "unknown": [
+      {
+        "tagName": "@author",
+        "tagValue": "Jovica Aleksic <jovica.aleksic@loopmode.de>"
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "react~Component"
+    ]
+  },
+  {
+    "__docId__": 7,
+    "kind": "get",
+    "name": "propTypes",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ReactNipple.js~ReactNipple.propTypes",
+    "access": null,
+    "description": "Component propTypes\n\nAny additional (unknown) props will be passed along as attributes of the created DOM element.",
+    "lineNumber": 36,
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "className",
+        "description": "A css classname for the DOM element"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "An object with nipplejs options, see https://github.com/yoannmoinet/nipplejs#options"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "static",
+        "description": "A shortcut for setting the options `{mode: 'static', position: {top: '50%', left: '50%'}}`. Will override values in the `options` object."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onCreated",
+        "description": "Callback that is invoked with the created instance"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onDestroy",
+        "description": "Callback that is invoked with the instance that is going to be destroyed"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onStart",
+        "description": "Callback for the 'start' event handler, see https://github.com/yoannmoinet/nipplejs#start"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onEnd",
+        "description": "Callback for the 'end' event handler, see https://github.com/yoannmoinet/nipplejs#end"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onMove",
+        "description": "Callback for the 'move' event handler, see https://github.com/yoannmoinet/nipplejs#move"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onDir",
+        "description": "Callback for the 'dir' event handler, see https://github.com/yoannmoinet/nipplejs#dir"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onPlain",
+        "description": "Callback for the 'plain' event handler, see https://github.com/yoannmoinet/nipplejs#plain"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onShown",
+        "description": "Callback for the 'shown' event handler, see https://github.com/yoannmoinet/nipplejs#shown"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onHidden",
+        "description": "Callback for the 'hidden' event handler, see https://github.com/yoannmoinet/nipplejs#hidden"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onPressure",
+        "description": "Callback for the 'pressure' event handler, see https://github.com/yoannmoinet/nipplejs#pressure"
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"className\": *, \"options\": *, \"static\": *, \"onStart\": *, \"onEnd\": *, \"onMove\": *, \"onDir\": *, \"onPlain\": *, \"onShown\": *, \"onHidden\": *, \"onPressure\": *, \"onCreated\": *, \"onDestroy\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 8,
+    "kind": "get",
+    "name": "ownProps",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#ownProps",
+    "access": null,
+    "description": null,
+    "lineNumber": 67,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "string[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 9,
+    "kind": "get",
+    "name": "elementProps",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#elementProps",
+    "access": null,
+    "description": null,
+    "lineNumber": 82,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 10,
+    "kind": "method",
+    "name": "componentDidUpdate",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#componentDidUpdate",
+    "access": null,
+    "description": null,
+    "lineNumber": 92,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "prevProps",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 11,
+    "kind": "method",
+    "name": "render",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#render",
+    "access": null,
+    "description": null,
+    "lineNumber": 99,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "method",
+    "name": "handleElement",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleElement",
+    "access": null,
+    "description": null,
+    "lineNumber": 112,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "ref",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 13,
+    "kind": "member",
+    "name": "_element",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#_element",
+    "access": null,
+    "description": null,
+    "lineNumber": 113,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 14,
+    "kind": "method",
+    "name": "createJoystick",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#createJoystick",
+    "access": null,
+    "description": null,
+    "lineNumber": 120,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 15,
+    "kind": "member",
+    "name": "joystick",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#joystick",
+    "access": null,
+    "description": null,
+    "lineNumber": 144,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 16,
+    "kind": "method",
+    "name": "destroyJoystick",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#destroyJoystick",
+    "access": null,
+    "description": null,
+    "lineNumber": 150,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 17,
+    "kind": "member",
+    "name": "joystick",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#joystick",
+    "access": null,
+    "description": null,
+    "lineNumber": 153,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 18,
+    "kind": "method",
+    "name": "invokeCallback",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#invokeCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 156,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "type",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 19,
+    "kind": "method",
+    "name": "handleJoystickStart",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleJoystickStart",
+    "access": null,
+    "description": null,
+    "lineNumber": 162,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 20,
+    "kind": "method",
+    "name": "handleJoystickEnd",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleJoystickEnd",
+    "access": null,
+    "description": null,
+    "lineNumber": 166,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 21,
+    "kind": "method",
+    "name": "handleJoystickMove",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleJoystickMove",
+    "access": null,
+    "description": null,
+    "lineNumber": 170,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 22,
+    "kind": "method",
+    "name": "handleJoystickDir",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleJoystickDir",
+    "access": null,
+    "description": null,
+    "lineNumber": 174,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 23,
+    "kind": "method",
+    "name": "handleJoystickPlain",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleJoystickPlain",
+    "access": null,
+    "description": null,
+    "lineNumber": 178,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 24,
+    "kind": "method",
+    "name": "handleJoystickShown",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleJoystickShown",
+    "access": null,
+    "description": null,
+    "lineNumber": 182,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 25,
+    "kind": "method",
+    "name": "handleJoystickHidden",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleJoystickHidden",
+    "access": null,
+    "description": null,
+    "lineNumber": 186,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 26,
+    "kind": "method",
+    "name": "handleJoystickPressure",
+    "memberof": "src/ReactNipple.js~ReactNipple",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ReactNipple.js~ReactNipple#handleJoystickPressure",
+    "access": null,
+    "description": null,
+    "lineNumber": 190,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "evt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "decorators": [
+      {
+        "name": "autobind",
+        "arguments": null
+      }
+    ]
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 49,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 50,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 52,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 53,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 54,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 55,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 56,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 57,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 58,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 59,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 60,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 61,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 62,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 63,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 64,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 65,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 67,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 68,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 69,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 71,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 72,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 73,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 74,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "lineNumber": 193,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 76,
+    "kind": "external",
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 77,
+    "kind": "external",
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 78,
+    "kind": "external",
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 79,
+    "kind": "external",
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 80,
+    "kind": "external",
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 81,
+    "kind": "external",
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 82,
+    "kind": "external",
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 83,
+    "kind": "external",
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "lineNumber": 34,
+    "builtinExternal": true
+  }
+]
