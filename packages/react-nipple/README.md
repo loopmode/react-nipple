@@ -4,6 +4,12 @@ A react wrapper for the [nipplejs](https://www.npmjs.com/package/nipplejs) on-sc
 
 <img src="https://raw.githubusercontent.com/loopmode/react-nipple/master/packages/react-nipple/preview.gif" />
 
+### Resources
+
+-   Github repository: [https://github.com/loopmode/react-nipple](https://github.com/loopmode/react-nipple)
+-   NPM package: [https://www.npmjs.com/package/react-nipple](https://www.npmjs.com/package/react-nipple)
+-   Docs: [https://loopmode.github.io/react-nipple/](https://loopmode.github.io/react-nipple/)
+
 ## Installation
 
 ```bash
@@ -11,12 +17,6 @@ yarn add react-nipple
 # or using npm:
 npm install --save react-nipple
 ```
-
-### Resources
-
--   Github repository: [https://github.com/loopmode/react-nipple](https://github.com/loopmode/react-nipple)
--   NPM package: [https://www.npmjs.com/package/react-nipple](https://www.npmjs.com/package/react-nipple)
--   Docs: [https://loopmode.github.io/react-nipple/](https://loopmode.github.io/react-nipple/)
 
 ## Usage
 
@@ -40,7 +40,7 @@ class Example extends React.Component {
                     options={{ mode: 'static', position: { top: '50%', left: '50%' } }}
                     // any unknown props will be passed to the container element, e.g. 'title', 'style' etc
                     style={{
-                        outline: `1px dashed red`,
+                        outline: '1px dashed red',
                         width: 150,
                         height: 150
                         // if you pass position: 'relative', you don't need to import the stylesheet
@@ -84,7 +84,7 @@ import React from 'react';
 import ReactNipple from 'react-nipple';
 import DebugView from 'react-nipple/lib/DebugView';
 
-class ReactNippleExample extends React.Component {
+export default class DebugExample extends React.Component {
     state = {
         data: {}
     };
@@ -92,14 +92,14 @@ class ReactNippleExample extends React.Component {
         return (
             <div>
                 <ReactNipple
-                    options={{mode: 'static', position: {top: '50%', left: '50%'}}}
+                    options={{ mode: 'static', position: { top: '50%', left: '50%' } }}
                     style={{
-                        outline: `1px dashed red`,
+                        outline: '1px dashed red',
+                        color. 'blue',
                         width: 150,
-                        height: 150
-                        position: `relative`
+                        height: 150,
+                        position: 'relative'
                     }}
-
                     onStart={this.handleEvent}
                     onEnd={this.handleEvent}
                     onMove={this.handleEvent}
@@ -116,6 +116,6 @@ class ReactNippleExample extends React.Component {
     handleEvent = (evt, data) => {
         console.log(evt);
         this.setState({ data });
-    }
+    };
 }
 ```

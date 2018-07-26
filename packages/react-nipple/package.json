@@ -1,14 +1,16 @@
 {
   "name": "react-nipple",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
-    "babel": "babel src --out-dir lib --copy-files",
-    "eslint": "eslint src",
-    "esdoc": "esdoc",
     "clean": "rm -rf lib/*",
-    "prepublishOnly": "yarn eslint && yarn clean && yarn babel"
+    "eslint": "eslint src",
+    "docs": "esdoc",
+    "build": "babel src --out-dir lib --copy-files",
+    "build:watch": "yarn build --watch",
+    "build:full": "yarn clean && yarn eslint --fix && yarn docs && yarn build",
+    "prepublishOnly": "yarn build:full"
   },
   "peerDependencies": {
     "react": "^16.4.1",
