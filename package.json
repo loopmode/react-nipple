@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "demo": "cd packages/demo && yarn start",
+    "docs": "cd packages/react-nipple && yarn esdoc && cp -r ./docs ../..",
     "nuke": "find . -name node_modules -type d -exec rm -rf '{}' + && yarn"
   }
 }
