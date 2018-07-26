@@ -1,6 +1,10 @@
 # react-nipple
 
-The workspace repository for the [react-nipple](https://www.npmjs.com/package/react-nipple) package.
+A react wrapper for [nipplejs](https://www.npmjs.com/package/nipplejs)
+
+<img src="https://raw.githubusercontent.com/loopmode/react-nipple/master/packages/react-nipple/preview.gif" />
+
+This is the workspace repository for the [react-nipple](https://www.npmjs.com/package/react-nipple) package.
 
 -   Check [/packages/react-nipple](https://github.com/loopmode/react-nipple/tree/master/packages/react-nipple) for the package itself
 -   Check [/packages/demo](https://github.com/loopmode/react-nipple/tree/master/packages/demo) for a simple demo app built with `create-react-app`

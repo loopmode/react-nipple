@@ -2,6 +2,8 @@
 
 A react wrapper for [nipplejs](https://www.npmjs.com/package/nipplejs)
 
+<img src="https://raw.githubusercontent.com/loopmode/react-nipple/master/packages/react-nipple/preview.gif" />
+
 ## Installation
 
 ```bash
