@@ -7,7 +7,8 @@
     "babel": "babel src --out-dir lib --copy-files",
     "eslint": "eslint src",
     "esdoc": "esdoc",
-    "clean": "rm -rf lib/*"
+    "clean": "rm -rf lib/*",
+    "prepublishOnly": "yarn eslint && yarn clean && yarn babel"
   },
   "peerDependencies": {
     "react": "^16.4.1",
