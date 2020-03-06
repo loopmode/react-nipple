@@ -95,7 +95,7 @@ export default class DebugExample extends React.Component {
                     options={{ mode: 'static', position: { top: '50%', left: '50%' } }}
                     style={{
                         outline: '1px dashed red',
-                        color. 'blue',
+                        color: 'blue',
                         width: 150,
                         height: 150,
                         position: 'relative'
