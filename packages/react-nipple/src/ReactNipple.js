@@ -112,15 +112,15 @@ export default class ReactNipple extends Component {
     handleElement(ref) {
         this._element = ref;
         if (ref) {
-            this.createJoystick(this.props);
+            this.createJoystick();
         } else if (this._element) {
             this.destroyJoystick();
         }
     }
-    createJoystick(props) {
+    createJoystick() {
         const options = {
             zone: this._element,
-            ...props.options
+            ...this.props.options
         };
 
         if (this.props.static) {
@@ -143,8 +143,8 @@ export default class ReactNipple extends Component {
 
         this.joystick = joystick;
 
-        if (props.onCreated) {
-            props.onCreated(this.joystick);
+        if (this.props.onCreated) {
+            this.props.onCreated(this.joystick);
         }
     }
     destroyJoystick() {
