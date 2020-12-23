@@ -113,17 +113,17 @@ var ReactNipple = (_class = function (_Component) {
         value: function handleElement(ref) {
             this._element = ref;
             if (ref) {
-                this.createJoystick(this.props);
+                this.createJoystick();
             } else if (this._element) {
                 this.destroyJoystick();
             }
         }
     }, {
         key: 'createJoystick',
-        value: function createJoystick(props) {
+        value: function createJoystick() {
             var options = _extends({
                 zone: this._element
-            }, props.options);
+            }, this.props.options);
 
             if (this.props.static) {
                 options.mode = 'static';
@@ -145,8 +145,8 @@ var ReactNipple = (_class = function (_Component) {
 
             this.joystick = joystick;
 
-            if (props.onCreated) {
-                props.onCreated(this.joystick);
+            if (this.props.onCreated) {
+                this.props.onCreated(this.joystick);
             }
         }
     }, {
