@@ -265,7 +265,11 @@ var ReactNipple = (_class = function (_Component) {
                     mode: _propTypes2.default.string, // 'dynamic', 'static' or 'semi'
                     restJoystick: _propTypes2.default.bool,
                     restOpacity: _propTypes2.default.number, // opacity when not 'dynamic' and rested
-                    catchDistance: _propTypes2.default.number
+                    catchDistance: _propTypes2.default.number,
+                    lockX: _propTypes2.default.bool,
+                    lockY: _propTypes2.default.bool,
+                    shape: _propTypes2.default.string,
+                    dynamicPage: _propTypes2.default.bool
                 }),
                 static: _propTypes2.default.bool,
                 onStart: _propTypes2.default.func,
