@@ -48,7 +48,11 @@ export default class ReactNipple extends Component {
                 mode: PropTypes.string, // 'dynamic', 'static' or 'semi'
                 restJoystick: PropTypes.bool,
                 restOpacity: PropTypes.number, // opacity when not 'dynamic' and rested
-                catchDistance: PropTypes.number
+                catchDistance: PropTypes.number,
+                lockX: PropTypes.bool,
+                lockY: PropTypes.bool,
+                shape: PropTypes.string,
+                dynamicPage: PropTypes.bool
             }),
             static: PropTypes.bool,
             onStart: PropTypes.func,
