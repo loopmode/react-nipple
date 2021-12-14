@@ -37,7 +37,7 @@ class Example extends React.Component {
                 <ReactNipple
                     // supports all nipplejs options
                     // see https://github.com/yoannmoinet/nipplejs#options
-                    options={{ mode: 'static', position: { top: '50%', left: '50%' } }}
+                    options={{ mode: 'static', position: { top: '50%', left: '50%' }, color: 'red' }}
                     // any unknown props will be passed to the container element, e.g. 'title', 'style' etc
                     style={{
                         outline: '1px dashed red',
