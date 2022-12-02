@@ -38,9 +38,9 @@ export default class ReactNipple extends Component {
             className: PropTypes.string,
             options: PropTypes.shape({
                 color: PropTypes.string,
-                size: PropTypes.integer,
-                threshold: PropTypes.float, // before triggering a directional event
-                fadeTime: PropTypes.integer, // transition time
+                size: PropTypes.number,
+                threshold: PropTypes.number, // before triggering a directional event
+                fadeTime: PropTypes.number, // transition time
                 multitouch: PropTypes.bool,
                 maxNumberOfNipples: PropTypes.number, // when multitouch, what is too many?
                 dataOnly: PropTypes.bool, // no dom element whatsoever
