@@ -1,3 +1,7 @@
+# NOTICE
+
+The [original repo](https://github.com/loopmode/react-nipple) is no longer maintained so I created this fork to fix the annoying warning about prop types. Here is my open [pull request](https://github.com/loopmode/react-nipple/pull/54). 
+
 # react-nipple
 
 A react wrapper for the [nipplejs](https://www.npmjs.com/package/nipplejs) on-screen-joystick.

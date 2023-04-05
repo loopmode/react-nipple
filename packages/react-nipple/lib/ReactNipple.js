@@ -255,9 +255,9 @@ var ReactNipple = (_class = function (_Component) {
                 className: _propTypes2.default.string,
                 options: _propTypes2.default.shape({
                     color: _propTypes2.default.string,
-                    size: _propTypes2.default.integer,
-                    threshold: _propTypes2.default.float, // before triggering a directional event
-                    fadeTime: _propTypes2.default.integer, // transition time
+                    size: _propTypes2.default.number,
+                    threshold: _propTypes2.default.number, // before triggering a directional event
+                    fadeTime: _propTypes2.default.number, // transition time
                     multitouch: _propTypes2.default.bool,
                     maxNumberOfNipples: _propTypes2.default.number, // when multitouch, what is too many?
                     dataOnly: _propTypes2.default.bool, // no dom element whatsoever
