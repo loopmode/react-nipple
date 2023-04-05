@@ -1,6 +1,6 @@
 {
-  "name": "react-nipple",
-  "version": "1.0.3",
+  "name": "@mjforan/react-nipple",
+  "version": "1.0.6",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
@@ -25,5 +25,23 @@
   "devDependencies": {
     "@loopmode/babel6-base": "^0.0.6",
     "react": "^16.4.1"
-  }
+  },
+  "description": "A react wrapper for the [nipplejs](https://www.npmjs.com/package/nipplejs) on-screen-joystick (with fixed prop-types).",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjforan/react-nipple.git"
+  },
+  "keywords": [
+    "react",
+    "nipple",
+    "joystick"
+  ],
+  "author": "Jovica Aleksic",
+  "bugs": {
+    "url": "https://github.com/mjforan/react-nipple/issues"
+  },
+  "homepage": "https://github.com/mjforan/react-nipple/tree/master/packages/react-nipple#readme"
 }
