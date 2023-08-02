@@ -13,8 +13,8 @@
     "prepublishOnly": "yarn build:full"
   },
   "peerDependencies": {
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react": ">=16.4.1",
+    "react-dom": ">=16.4.1"
   },
   "dependencies": {
     "autobind-decorator": "^2.1.0",
